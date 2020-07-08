@@ -1,0 +1,21 @@
+---
+hosts: remote
+tasks:
+- name: Copy file with owner and permissions
+  copy:
+    src: /root/ansible.txt
+    dest: /tmp/
+    owner: ec2-user
+    group: ec2-user
+    mode: '0644'
+
+- name: install the latest version of Apache
+  yum:
+    name: httpd
+    state: latest	
+- name: Add the user 'suresh' with a specific uid and a primary group of 'root'
+  user:
+    name: suresh
+    comment: suresh
+    uid: 1040
+    group: root	
